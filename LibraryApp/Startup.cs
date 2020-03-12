@@ -33,8 +33,8 @@ namespace LibraryApp
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -42,6 +42,8 @@ namespace LibraryApp
              * -------------------------------------------------------------------------------------
              * AGREGANDO CUSTOM IDENTITY
              * -------------------------------------------------------------------------------------
+             * 
+             * No olvidar _LoginPartial.cshtml cambiar de IdentityUser a ApplicationUser
              */
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddDefaultTokenProviders()
