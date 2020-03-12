@@ -12,6 +12,9 @@ using LibraryApp.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Utility;
+using EntityLayer.Entity;
 
 namespace LibraryApp
 {
@@ -34,6 +37,16 @@ namespace LibraryApp
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            /*
+             * -------------------------------------------------------------------------------------
+             * AGREGANDO CUSTOM IDENTITY
+             * -------------------------------------------------------------------------------------
+             */
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddSingleton<IEmailSender, CustomEmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
