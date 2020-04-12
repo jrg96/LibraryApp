@@ -210,7 +210,7 @@ namespace LibraryApp.Areas.Identity.Pages.Account
 
 
                     // WARNING: THIS LINE ADDS AN ADMIN USER, BE CAREFUL
-                    // await _userManager.AddToRoleAsync(user, CustomRoles.ROLE_ADMIN);
+                    //await _userManager.AddToRoleAsync(user, CustomRoles.ROLE_ADMIN);
 
                     await _userManager.AddToRoleAsync(user, user.Role);
 
